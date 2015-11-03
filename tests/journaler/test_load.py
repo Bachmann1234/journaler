@@ -14,7 +14,8 @@ from pytz import utc
     st.lists(st.text()),
     st.lists(st.text()),
     st.lists(st.text()),
-    st.sampled_from(VALID_MEALS)
+    st.sampled_from(VALID_MEALS),
+    st.text()
 )
 def test_to_from_json(
         date,
@@ -23,7 +24,8 @@ def test_to_from_json(
         mood_tags,
         food_tags,
         entry_tags,
-        meal
+        meal,
+        note
 ):
     assume(date > utc.localize(datetime.datetime(2000, 1, 1, 1)))
     original = FoodLog(
@@ -33,8 +35,8 @@ def test_to_from_json(
         mood_tags,
         food_tags,
         entry_tags,
-        meal
-
+        meal,
+        note
     )
     assert original == json_to_food_log(food_log_to_json(original))
 
@@ -59,7 +61,8 @@ def test_add_to_log(tmpdir):
             ['sleepy', 'hungry'],
             ['broccoli'],
             ['test'],
-            SNACK
+            SNACK,
+            ""
         ),
         FoodLog(
             utc.localize(datetime.datetime.utcnow()),
@@ -68,7 +71,8 @@ def test_add_to_log(tmpdir):
             ['happy'],
             ['popcorn', 'butter'],
             ['movies', 'test'],
-            SNACK
+            SNACK,
+            "I am a note"
         )
     ]
     log_file = str(tmpdir.join("log.txt"))

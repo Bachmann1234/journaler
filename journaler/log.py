@@ -42,6 +42,7 @@ def _get_value(prompt, validation_function):
             value = None
     return value
 
+
 def main():
     location = os.getenv(LOG_LOC_ENV)
     while not location:
@@ -62,6 +63,7 @@ def main():
     meal = _get_value(
         "What meal is this? Must be one of: {}\n".format(VALID_MEALS), validate_meal
     )
+    note = raw_input("Any other thoughts?\n")
     log = FoodLog(
         date=datetime.datetime.utcnow(),
         mood_rating=mood_rating,
@@ -69,7 +71,8 @@ def main():
         mood_tags=mood_tags,
         food_tags=food_tags,
         entry_tags=entry_tags,
-        meal=meal
+        meal=meal,
+        note=note
     )
     add_log_to_file(location, log)
     print "Entry Added"

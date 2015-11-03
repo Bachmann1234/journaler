@@ -17,6 +17,7 @@ Stores a line of the food log
 :type food_tags list[str] labels for food. Should be stored lowercase
 :type entry_tags list[str] metadata about entry that may be helpful for analysis
 :type meal str (Breakfast, Lunch, Dinner, Snack) Multiple meal tags in a day are combined to be one meal
+:type note str any other thoughts longform
 """
 FoodLog = namedtuple(
     'FoodLog',
@@ -27,7 +28,8 @@ FoodLog = namedtuple(
         'mood_tags',
         'food_tags',
         'entry_tags',
-        'meal'
+        'meal',
+        'note'
     ]
 )
 BREAKFAST = 'breakfast'
@@ -71,5 +73,6 @@ def json_to_food_log(json_string):
         mood_tags=log_dict['mood_tags'],
         food_tags=log_dict['food_tags'],
         entry_tags=log_dict['entry_tags'],
-        meal=log_dict['meal']
+        meal=log_dict['meal'],
+        note=log_dict['note']
     )

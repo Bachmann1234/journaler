@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='journaler',
-    version='1.0',
+    version='1.2',
     author='Matt Bachmann',
     author_email='bachmann.matt@gmail.com',
     url='https://github.com/Bachmann1234/journaler',
